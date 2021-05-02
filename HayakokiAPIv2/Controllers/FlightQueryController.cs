@@ -19,7 +19,19 @@ namespace HayakokiAPIv2.Controllers
         {
             _context = context;
         }
+        // GET: api/FlightAdmin/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Flight>> GetFlight(string id)
+        {
+            var flight = await _context.Flights.FindAsync(id);
 
+            if (flight == null)
+            {
+                return NotFound();
+            }
+
+            return flight;
+        }
         // POST: api/Flight
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
