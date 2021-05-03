@@ -25,7 +25,7 @@ namespace HayakokiAPIv2.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Ticket>>> GetTicket(Guid id)
         {
-            var ticket = await _context.Tickets.Where(x => x.UserId == id).ToListAsync();
+            var ticket = await _context.Tickets.Where(x => x.UserId == id).OrderByDescending(x => x.TravelDate).ToListAsync();
 
             if (ticket == null)
             {

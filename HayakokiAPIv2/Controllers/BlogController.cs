@@ -24,7 +24,8 @@ namespace HayakokiAPIv2.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TravelBlog>>> GetTravelBlogs()
         {
-            return await _context.TravelBlogs.ToListAsync();
+            return await _context.TravelBlogs.OrderByDescending(x => x.Posteddate)
+                .ToListAsync();
         }
 
         // GET: api/Blog/5
